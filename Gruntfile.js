@@ -17,20 +17,8 @@ module.exports = function (grunt) {
                     dest: 'dist/'
                 }]
             }
-        },
-        watch: {
-            js: {
-                files: ['src/**/*.js'],
-                tasks: ['js']
-            }
-        },
-        focus: {
-            dev: {}
         }
     });
 
-    grunt.registerTask('js', ['babel']);
-
-    grunt.registerTask('default', ['js']);
-    grunt.registerTask('dev', ['default', 'focus:dev']);
+    grunt.registerTask('default', ['babel']);
 };
