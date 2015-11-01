@@ -74,9 +74,9 @@ var DiscordAdapter = (function (_Adapter) {
                 messages[_key - 1] = arguments[_key];
             }
 
-            for (var msg in messages) {
-                if (messages.hasOwnProperty(msg)) {
-                    this.robot.logger.info("Sending message to " + envelope.room + ": " + msg);
+            for (var index in messages) {
+                if (messages.hasOwnProperty(index)) {
+                    var msg = messages[index];
                     this.client.sendMessage(envelope.room, msg);
                 }
             }
