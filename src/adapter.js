@@ -11,9 +11,11 @@ try {
 }
 //*/
 
-
 class DiscordAdapter extends Adapter {
     run() {
+        console.log("Running");
+        this.robot.logger.debug("Running discord");
+
         this.options = {
             email: process.env.HUBOT_DISCORD_EMAIL,
             password: process.env.HUBOT_DISCORD_PASSWORD
@@ -37,6 +39,8 @@ class DiscordAdapter extends Adapter {
 
     @autobind
     message(message) {
+        this.robot.logger.debug("Message received: " + message.content);
+
         // Ignore messages from self
         if (message.author.id = this.client.user.id) {
             return;

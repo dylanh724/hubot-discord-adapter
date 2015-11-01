@@ -35,6 +35,9 @@ var DiscordAdapter = (function (_Adapter) {
     _createDecoratedClass(DiscordAdapter, [{
         key: 'run',
         value: function run() {
+            console.log("Running");
+            this.robot.logger.debug("Running discord");
+
             this.options = {
                 email: process.env.HUBOT_DISCORD_EMAIL,
                 password: process.env.HUBOT_DISCORD_PASSWORD
@@ -60,6 +63,8 @@ var DiscordAdapter = (function (_Adapter) {
         key: 'message',
         decorators: [_coreDecorators.autobind],
         value: function message(_message) {
+            this.robot.logger.debug("Message received: " + _message.content);
+
             // Ignore messages from self
             if (_message.author.id = this.client.user.id) {
                 return;
