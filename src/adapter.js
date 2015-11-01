@@ -1,5 +1,5 @@
 import {Robot, Adapter, EnterMessage, LeaveMessage, TopicMessage, TextMessage} from 'hubot';
-import {Client} from 'discord';
+import {Client} from 'discord.js';
 import {autobind} from 'core-decorators';
 
 /**
