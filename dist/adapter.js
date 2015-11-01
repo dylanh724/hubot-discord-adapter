@@ -89,10 +89,10 @@ var DiscordAdapter = (function (_Adapter) {
                 messages[_key2 - 1] = arguments[_key2];
             }
 
-            for (var msg in messages) {
-                if (messages.hasOwnProperty(msg)) {
+            for (var index in messages) {
+                if (messages.hasOwnProperty(index)) {
+                    var msg = messages[index];
                     this.client.sendMessage(envelope.room, msg);
-                    this.robot.logger.info("Reply");
                 }
             }
         }

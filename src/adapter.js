@@ -51,10 +51,10 @@ class DiscordAdapter extends Adapter {
 
     @autobind
     reply(envelope, ...messages) {
-        for (let msg in messages) {
-            if (messages.hasOwnProperty(msg)) {
+        for (let index in messages) {
+            if (messages.hasOwnProperty(index)) {
+                let msg = messages[index];
                 this.client.sendMessage(envelope.room, msg);
-                this.robot.logger.info("Reply");
             }
         }
     }
