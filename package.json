@@ -1,5 +1,5 @@
 {
-  "name":             "hubot-discord",
+  "name":             "hubot-discord-adapter",
     "version":          "1.0.0",
     "main":             "src/adapter.js",
     "author":           "Aaron Scherer <aequasi@gmail.com> (http://aaronscherer.me)",
