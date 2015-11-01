@@ -4,6 +4,7 @@
   "main": "dist/adapter.js",
   "author": "Aaron Scherer <aequasi@gmail.com> (http://aaronscherer.me)",
   "dependencies": {
+    "discord.io": "^1.4.1",
     "discord.js": "3.8.0",
     "parent-require": "^1.0.0"
   },

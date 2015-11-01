@@ -12,9 +12,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== 'function' 
 
 var _hubot = require('hubot');
 
-var _discordJs = require('discord.js');
+var _discordIo = require('discord.io');
 
-var _discordJs2 = _interopRequireDefault(_discordJs);
+var _discordIo2 = _interopRequireDefault(_discordIo);
 
 var _coreDecorators = require('core-decorators');
 
@@ -30,41 +30,41 @@ var DiscordAdapter = (function (_Adapter) {
     _createDecoratedClass(DiscordAdapter, [{
         key: 'run',
         value: function run() {
-            this.options = {
-                email: process.env.HUBOT_DISCORD_EMAIL,
-                password: process.env.HUBOT_DISCORD_PASSWORD
-            };
+            var _this = this;
 
-            this.client = new _discordJs2['default'].Client();
+            this.client = new _discordIo2['default']({
+                email: process.env.HUBOT_DISCORD_EMAIL,
+                password: process.env.HUBOT_DISCORD_PASSWORD,
+                autorun: true
+            });
             this.client.on('ready', this.ready);
             this.client.on('message', this.message);
 
-            this.client.login(this.options.email, this.options.password);
+            this.client.on("err", function (error) {
+                _this.robot.logger.error(error);
+            });
         }
     }, {
         key: 'ready',
         decorators: [_coreDecorators.autobind],
-        value: function ready() {
-            this.robot.logger.info("Logged in as: " + this.client.user.username);
-            this.robot.name = this.client.user.username.toLowerCase();
+        value: function ready(rawEvent) {
+            this.robot.logger.info("Logged in as: " + this.client.username);
+            this.robot.name = this.client.username.toLowerCase();
 
             this.emit("connected");
         }
     }, {
         key: 'message',
         decorators: [_coreDecorators.autobind],
-        value: function message(_message) {
-            var user = undefined;
-
-            if (_message.author.id === this.client.user.id) {
+        value: function message(user, userID, channelID, _message, rawEvent) {
+            if (userID === this.client.id) {
                 return;
             }
 
             user = this.robot.brain.userForId(_message.author);
+            user.room = channelID;
 
-            user.room = _message.channel;
-
-            this.receive(new _hubot.TextMessage(user, _message.content, _message.id));
+            this.receive(new _hubot.TextMessage(user, _message));
         }
     }, {
         key: 'send',
