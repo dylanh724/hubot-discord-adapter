@@ -91,6 +91,7 @@ var DiscordAdapter = (function (_Adapter) {
 
             for (var msg in messages) {
                 if (messages.hasOwnProperty(msg)) {
+                    this.client.sendMessage(envelope.room, msg);
                     this.robot.logger.info("Reply");
                 }
             }

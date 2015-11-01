@@ -53,6 +53,7 @@ class DiscordAdapter extends Adapter {
     reply(envelope, ...messages) {
         for (let msg in messages) {
             if (messages.hasOwnProperty(msg)) {
+                this.client.sendMessage(envelope.room, msg);
                 this.robot.logger.info("Reply");
             }
         }
