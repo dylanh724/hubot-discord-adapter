@@ -1,21 +1,21 @@
 {
-    "name":             "hubot-discord-adapter",
-    "version":          "1.0.0",
-    "main":             "dist/adapter.js",
-    "author":           "Aaron Scherer <aequasi@gmail.com> (http://aaronscherer.me)",
-    "dependencies":     {
-        "discord.js":     "3.8.0",
-        "parent-require": "^1.0.0"
-    },
-    "devDependencies":  {
-        "grunt":               "^0.4.5",
-        "grunt-babel":         "^5.0.3",
-        "grunt-contrib-watch": "^0.6.1",
-        "grunt-focus":         "^0.1.1",
-        "grunt-notify":        "^0.4.1",
-        "load-grunt-tasks":    "^3.3.0"
-    },
-    "peerDependencies": {
-        "hubot": ">=2.0"
-    }
+  "name": "hubot-discord-adapter",
+  "version": "1.1.0",
+  "main": "dist/adapter.js",
+  "author": "Aaron Scherer <aequasi@gmail.com> (http://aaronscherer.me)",
+  "dependencies": {
+    "discord.js": "3.8.0",
+    "parent-require": "^1.0.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-babel": "^5.0.3",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-focus": "^0.1.1",
+    "grunt-notify": "^0.4.1",
+    "load-grunt-tasks": "^3.3.0"
+  },
+  "peerDependencies": {
+    "hubot": ">=2.0"
+  }
 }
