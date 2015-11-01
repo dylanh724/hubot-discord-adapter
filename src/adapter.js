@@ -19,13 +19,14 @@ class DiscordAdapter extends Adapter {
             password: process.env.HUBOT_DISCORD_PASSWORD
         };
 
-        this.client = new Client
+        this.client = new Client();
         this.client.on('ready', this.ready);
         this.client.on('message', this.message);
 
         this.client.login(this.options.email, this.options.password);
     }
 
+    @autobind
     ready() {
         this.robot.logger.info("Logged in as: " + this.client.user.username);
         this.robot.name = this.client.user.username.toLowerCase();
@@ -47,12 +48,14 @@ class DiscordAdapter extends Adapter {
         this.receive(new TextMessage(user, message.content, message.id));
     }
 
+    @autobind
     send(envelope, ...messages) {
         for (let msg in messages) {
             this.client.sendMessage(envelope.room, msg);
         }
     }
 
+    @autobind
     reply(envelope, ...messages) {
         for (let msg in messages) {
             this.robot.logger.info("Reply");

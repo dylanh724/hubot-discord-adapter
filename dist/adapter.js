@@ -48,6 +48,7 @@ var DiscordAdapter = (function (_Adapter) {
         }
     }, {
         key: 'ready',
+        decorators: [_coreDecorators.autobind],
         value: function ready() {
             this.robot.logger.info("Logged in as: " + this.client.user.username);
             this.robot.name = this.client.user.username.toLowerCase();
@@ -71,6 +72,7 @@ var DiscordAdapter = (function (_Adapter) {
         }
     }, {
         key: 'send',
+        decorators: [_coreDecorators.autobind],
         value: function send(envelope) {
             for (var _len = arguments.length, messages = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
                 messages[_key - 1] = arguments[_key];
@@ -82,6 +84,7 @@ var DiscordAdapter = (function (_Adapter) {
         }
     }, {
         key: 'reply',
+        decorators: [_coreDecorators.autobind],
         value: function reply(envelope) {
             for (var _len2 = arguments.length, messages = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
                 messages[_key2 - 1] = arguments[_key2];
