@@ -9,5 +9,5 @@
     },
     "peerDependencies": {
       "hubot": ">=2.0"
-    },
+    }
 }
