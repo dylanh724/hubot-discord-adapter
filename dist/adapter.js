@@ -77,7 +77,7 @@ var DiscordAdapter = (function (_Adapter) {
             for (var index in messages) {
                 if (messages.hasOwnProperty(index)) {
                     var msg = messages[index];
-                    this.client.sendMessage(envelope.room, msg);
+                    this.client.sendMessage({ to: envelope.room, message: msg });
                 }
             }
         }
@@ -92,7 +92,7 @@ var DiscordAdapter = (function (_Adapter) {
             for (var index in messages) {
                 if (messages.hasOwnProperty(index)) {
                     var msg = messages[index];
-                    this.client.sendMessage(envelope.room, msg);
+                    this.client.sendMessage({ to: envelope.room, message: msg });
                 }
             }
         }

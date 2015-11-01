@@ -42,7 +42,7 @@ class DiscordAdapter extends Adapter {
         for (let index in messages) {
             if (messages.hasOwnProperty(index)) {
                 let msg = messages[index];
-                this.client.sendMessage(envelope.room, msg);
+                this.client.sendMessage({to: envelope.room, message: msg});
             }
         }
     }
@@ -52,7 +52,7 @@ class DiscordAdapter extends Adapter {
         for (let index in messages) {
             if (messages.hasOwnProperty(index)) {
                 let msg = messages[index];
-                this.client.sendMessage(envelope.room, msg);
+                this.client.sendMessage({to: envelope.room, message: msg});
             }
         }
     }
