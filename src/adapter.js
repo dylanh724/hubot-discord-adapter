@@ -36,7 +36,7 @@ class DiscordAdapter extends Adapter {
     @autobind
     message(message) {
         this.robot.logger.info("Message received: " + message.content);
-        this.robot.logger.info("Author: " + message.author);
+        console.log(message);
         this.robot.logger.info("Author: " + message.author.id);
         this.robot.logger.info("Client: " + this.client.user.id);
 
