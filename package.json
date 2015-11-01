@@ -1,6 +1,6 @@
 {
   "name": "hubot-discord-adapter",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "main": "dist/adapter.js",
   "author": "Aaron Scherer <aequasi@gmail.com> (http://aaronscherer.me)",
   "dependencies": {
