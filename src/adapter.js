@@ -2,15 +2,6 @@ import {Robot, Adapter, EnterMessage, LeaveMessage, TopicMessage, TextMessage} f
 import Discord from 'discord.js';
 import {autobind} from 'core-decorators';
 
-/**
-try {
-    let ref = require('hubot'), Robot = ref.Robot, Adapter = ref.Adapter, EnterMessage = ref.EnterMessage, LeaveMessage = ref.LeaveMessage, TopicMessage = ref.TopicMessage, TextMessage = ref.TextMessage;
-} catch (_error) {
-    prequire = require('parent-require');
-    let ref1 = prequire('hubot'), Robot = ref1.Robot, Adapter = ref1.Adapter, EnterMessage = ref1.EnterMessage, LeaveMessage = ref1.LeaveMessage, TopicMessage = ref1.TopicMessage, TextMessage = ref1.TextMessage;
-}
-//*/
-
 class DiscordAdapter extends Adapter {
     run() {
         this.options = {
@@ -35,21 +26,17 @@ class DiscordAdapter extends Adapter {
 
     @autobind
     message(message) {
-        this.robot.logger.info("Message received: " + message.content);
-        console.log(message);
-        this.robot.logger.info("Author: " + message.author.id);
-        this.robot.logger.info("Client: " + this.client.user.id);
+        let user;
 
-        // Ignore messages from self
-        if (message.author.id = this.client.user.id) {
+        if (message.author.id === this.client.user.id) {
             return;
         }
 
-        let user = this.robot.brain.userForId(message.author);
+        user = this.robot.brain.userForId(message.author);
+
         user.room = message.channel;
 
-        let status = this.receive(new TextMessage(user, message.content, message.id));
-        this.robot.logger.debug(status);
+        this.receive(new TextMessage(user, message.content, message.id));
     }
 
     @autobind

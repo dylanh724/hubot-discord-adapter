@@ -4,6 +4,8 @@ var _createDecoratedClass = (function () { function defineProperties(target, des
 
 var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
@@ -12,16 +14,9 @@ var _hubot = require('hubot');
 
 var _discordJs = require('discord.js');
 
-var _coreDecorators = require('core-decorators');
+var _discordJs2 = _interopRequireDefault(_discordJs);
 
-/**
-try {
-    let ref = require('hubot'), Robot = ref.Robot, Adapter = ref.Adapter, EnterMessage = ref.EnterMessage, LeaveMessage = ref.LeaveMessage, TopicMessage = ref.TopicMessage, TextMessage = ref.TextMessage;
-} catch (_error) {
-    prequire = require('parent-require');
-    let ref1 = prequire('hubot'), Robot = ref1.Robot, Adapter = ref1.Adapter, EnterMessage = ref1.EnterMessage, LeaveMessage = ref1.LeaveMessage, TopicMessage = ref1.TopicMessage, TextMessage = ref1.TextMessage;
-}
-//*/
+var _coreDecorators = require('core-decorators');
 
 var DiscordAdapter = (function (_Adapter) {
     _inherits(DiscordAdapter, _Adapter);
@@ -35,15 +30,12 @@ var DiscordAdapter = (function (_Adapter) {
     _createDecoratedClass(DiscordAdapter, [{
         key: 'run',
         value: function run() {
-            console.log("Running");
-            this.robot.logger.debug("Running discord");
-
             this.options = {
                 email: process.env.HUBOT_DISCORD_EMAIL,
                 password: process.env.HUBOT_DISCORD_PASSWORD
             };
 
-            this.client = new _discordJs.Client();
+            this.client = new _discordJs2['default'].Client();
             this.client.on('ready', this.ready);
             this.client.on('message', this.message);
 
@@ -55,7 +47,6 @@ var DiscordAdapter = (function (_Adapter) {
         value: function ready() {
             this.robot.logger.info("Logged in as: " + this.client.user.username);
             this.robot.name = this.client.user.username.toLowerCase();
-            this.robot.logger.info("Robot Name: " + this.robot.name);
 
             this.emit("connected");
         }
@@ -63,14 +54,14 @@ var DiscordAdapter = (function (_Adapter) {
         key: 'message',
         decorators: [_coreDecorators.autobind],
         value: function message(_message) {
-            this.robot.logger.debug("Message received: " + _message.content);
+            var user = undefined;
 
-            // Ignore messages from self
-            if (_message.author.id = this.client.user.id) {
+            if (_message.author.id === this.client.user.id) {
                 return;
             }
 
-            var user = this.robot.brain.userForId(_message.author);
+            user = this.robot.brain.userForId(_message.author);
+
             user.room = _message.channel;
 
             this.receive(new _hubot.TextMessage(user, _message.content, _message.id));
