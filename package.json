@@ -1,0 +1,13 @@
+{
+  "name":             "hubot-discord",
+    "version":          "1.0.0",
+    "main":             "src/adapter.js",
+    "author":           "Aaron Scherer <aequasi@gmail.com> (http://aaronscherer.me)",
+    "dependencies": {
+      "discord.js": "3.8.0",
+      "parent-require": "^1.0.0"
+    },
+    "peerDependencies": {
+      "hubot": ">=2.0"
+    },
+}
