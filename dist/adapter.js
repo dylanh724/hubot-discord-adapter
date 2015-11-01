@@ -75,7 +75,10 @@ var DiscordAdapter = (function (_Adapter) {
             }
 
             for (var msg in messages) {
-                this.client.sendMessage(envelope.room, msg);
+                if (messages.hasOwnProperty(msg)) {
+                    this.robot.logger.info("Sending message to " + envelope.room + ": " + msg);
+                    this.client.sendMessage(envelope.room, msg);
+                }
             }
         }
     }, {
@@ -87,7 +90,9 @@ var DiscordAdapter = (function (_Adapter) {
             }
 
             for (var msg in messages) {
-                this.robot.logger.info("Reply");
+                if (messages.hasOwnProperty(msg)) {
+                    this.robot.logger.info("Reply");
+                }
             }
         }
     }]);

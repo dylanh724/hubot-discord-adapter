@@ -42,14 +42,19 @@ class DiscordAdapter extends Adapter {
     @autobind
     send(envelope, ...messages) {
         for (let msg in messages) {
-            this.client.sendMessage(envelope.room, msg);
+            if (messages.hasOwnProperty(msg)) {
+                this.robot.logger.info("Sending message to " + envelope.room + ": " + msg);
+                this.client.sendMessage(envelope.room, msg);
+            }
         }
     }
 
     @autobind
     reply(envelope, ...messages) {
         for (let msg in messages) {
-            this.robot.logger.info("Reply");
+            if (messages.hasOwnProperty(msg)) {
+                this.robot.logger.info("Reply");
+            }
         }
     }
 }
