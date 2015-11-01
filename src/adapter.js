@@ -1,5 +1,5 @@
 import {Robot, Adapter, EnterMessage, LeaveMessage, TopicMessage, TextMessage} from 'hubot';
-import {Client} from 'discord.js';
+import Discord from 'discord.js';
 import {autobind} from 'core-decorators';
 
 /**
@@ -13,15 +13,12 @@ try {
 
 class DiscordAdapter extends Adapter {
     run() {
-        console.log("Running");
-        this.robot.logger.debug("Running discord");
-
         this.options = {
             email: process.env.HUBOT_DISCORD_EMAIL,
             password: process.env.HUBOT_DISCORD_PASSWORD
         };
 
-        this.client = new Client();
+        this.client = new Discord.Client();
         this.client.on('ready', this.ready);
         this.client.on('message', this.message);
 
@@ -32,24 +29,26 @@ class DiscordAdapter extends Adapter {
     ready() {
         this.robot.logger.info("Logged in as: " + this.client.user.username);
         this.robot.name = this.client.user.username.toLowerCase();
-        this.robot.logger.info("Robot Name: " + this.robot.name);
 
         this.emit("connected");
     }
 
     @autobind
     message(message) {
-        this.robot.logger.debug("Message received: " + message.content);
+        this.robot.logger.info("Message received: " + message.content);
+        this.robot.logger.info("Author: " + message.author.id);
+        this.robot.logger.info("Client: " + this.client.user.id);
 
         // Ignore messages from self
         if (message.author.id = this.client.user.id) {
             return;
         }
 
-        let user =this.robot.brain.userForId(message.author);
+        let user = this.robot.brain.userForId(message.author);
         user.room = message.channel;
 
-        this.receive(new TextMessage(user, message.content, message.id));
+        let status = this.receive(new TextMessage(user, message.content, message.id));
+        this.robot.logger.debug(status);
     }
 
     @autobind
