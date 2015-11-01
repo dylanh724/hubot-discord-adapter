@@ -10,7 +10,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== 'function' 
 
 var _hubot = require('hubot');
 
-var _discord = require('discord');
+var _discordJs = require('discord.js');
 
 var _coreDecorators = require('core-decorators');
 
@@ -40,7 +40,7 @@ var DiscordAdapter = (function (_Adapter) {
                 password: process.env.HUBOT_DISCORD_PASSWORD
             };
 
-            this.client = new _discord.Client();
+            this.client = new _discordJs.Client();
             this.client.on('ready', this.ready);
             this.client.on('message', this.message);
 
