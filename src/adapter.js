@@ -31,7 +31,7 @@ class DiscordAdapter extends Adapter {
             return;
         }
 
-        user = this.robot.brain.userForId(message.author);
+        user = this.robot.brain.userForId(userID);
         user.room = channelID;
 
         this.receive(new TextMessage(user, message));

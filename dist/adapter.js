@@ -61,7 +61,7 @@ var DiscordAdapter = (function (_Adapter) {
                 return;
             }
 
-            user = this.robot.brain.userForId(_message.author);
+            user = this.robot.brain.userForId(userID);
             user.room = channelID;
 
             this.receive(new _hubot.TextMessage(user, _message));
